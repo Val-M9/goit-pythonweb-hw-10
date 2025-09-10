@@ -1,0 +1,23 @@
+[project]
+name = "contacts-app"
+version = "0.1.0"
+description = "App for managing contacts"
+authors = [
+    {name = "Valera",email = "v.mischenko90@gmail.com"}
+]
+readme = "README.md"
+
+[tool.poetry]
+packages = [{include = "*", from = "src"}]
+
+[tool.poetry.dependencies]
+python = ">=3.13"
+sqlalchemy = "^2.0.43"
+asyncpg = "^0.30.0"
+alembic = "^1.16.5"
+fastapi = {extras = ["standard"], version = "^0.116.1"}
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
