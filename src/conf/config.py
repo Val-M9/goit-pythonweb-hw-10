@@ -1,12 +1,5 @@
-from pathlib import Path
-from dotenv import load_dotenv
-import os
-
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import EmailStr, SecretStr
-
-env_path = Path(__file__).resolve().parent.parent.parent / ".env"
-load_dotenv(dotenv_path=env_path)
 
 
 class Settings(BaseSettings):
@@ -32,7 +25,7 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(
         extra="ignore",
-        env_file=env_path,
+        env_file=".env",
         env_file_encoding="utf-8",
         case_sensitive=True,
     )
