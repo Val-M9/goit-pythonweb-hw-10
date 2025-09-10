@@ -1,5 +1,12 @@
-class Config:
-    DB_URL = "postgresql+asyncpg://admin:654321@localhost:5432/contacts_app"
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-config = Config
+class Settings(BaseSettings):
+    DB_URL: str
+    JWT_SECRET: str
+    model_config = SettingsConfigDict(
+        extra="ignore", env_file=".env", env_file_encoding="utf-8", case_sensitive=True
+    )
+
+
+settings = Settings()  # type: ignore

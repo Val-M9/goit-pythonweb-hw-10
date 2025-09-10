@@ -11,11 +11,12 @@ readme = "README.md"
 packages = [{include = "*", from = "src"}]
 
 [tool.poetry.dependencies]
-python = ">=3.13"
+python = ">=3.13,<4.0"
 sqlalchemy = "^2.0.43"
 asyncpg = "^0.30.0"
 alembic = "^1.16.5"
 fastapi = {extras = ["standard"], version = "^0.116.1"}
+pydantic-settings = "^2.10.1"
 
 
 [build-system]

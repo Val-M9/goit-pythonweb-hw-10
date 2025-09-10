@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, ConfigDict
 from datetime import date
 from typing import Optional
 
@@ -28,3 +28,27 @@ class ContactUpdate(BaseModel):
 class BirthdaysResponse(BaseModel):
     message: str
     contacts: list[ContactResponse] = []
+
+
+class User(BaseModel):
+    id: int
+    username: str
+    email: str
+    avatar: str
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class UserCreate(BaseModel):
+    username: str
+    email: str
+    password: str
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class RequestEmail(BaseModel):
+    email: EmailStr
