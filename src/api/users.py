@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, UploadFile, File
+from fastapi import APIRouter, Depends, UploadFile, File, Request
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.schemas.schemas import User
@@ -7,12 +7,14 @@ from src.services.upload_file import UploadFileService
 from src.services.users import UserService
 from src.database.db import get_db
 from src.conf.config import settings
+from src.middlewares.limiter import limiter
 
 router = APIRouter(prefix="/users", tags=["users"])
 
 
 @router.get("/me", response_model=User)
-async def me(user: User = Depends(get_current_user)):
+@limiter.limit("10/minute")
+async def me(request: Request, user: User = Depends(get_current_user)):
     return user
 
 
